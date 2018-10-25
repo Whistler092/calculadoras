@@ -6,7 +6,7 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { monto: 35000 };
+    this.state = { monto: 30000000 };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -37,11 +37,11 @@ class App extends Component {
       renta: 0,
       intereses: 0,
       amortizacion: 0 ,
-      capital: this.state.monto
+      capital: this.formatMoney(this.state.monto)
     })
 
-    const periodo = 8;
-    const tasa = 0.126/12;
+    const periodo = 60;
+    const tasa = 0.09/12;
     const renta = (this.state.monto / 
           (
             (1 - Math.pow((1+tasa), -periodo))
@@ -55,11 +55,11 @@ class App extends Component {
       monto -=  amortizacion;
 
       cuotas.push({
-        id: index,
-        renta: renta.toFixed(2),
-        intereses: intereses.toFixed(2),
-        amortizacion: amortizacion.toFixed(2) ,
-        capital: monto.toFixed(2)
+        id: index +1,
+        renta: this.formatMoney(renta),
+        intereses: this.formatMoney(intereses),
+        amortizacion: this.formatMoney(amortizacion) ,
+        capital: this.formatMoney(monto)
       })
     }
 
@@ -68,10 +68,18 @@ class App extends Component {
     })
   }
 
+  formatMoney(amount, decimalCount = 2) {
+    try {
+      return amount.toFixed(decimalCount).replace(/\d(?=(\d{3})+\.)/g, '$&,')
+    } catch (e) {
+      console.log(e)
+    }
+  };
+
   obtenerCuotas(){
     return (
       this.state.cuotas.map(i => 
-        <tr>
+        <tr key={i.id}>
           <td>#{i.id}</td>
           <td>{i.renta}</td>
           <td>{i.intereses}</td>
