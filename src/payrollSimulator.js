@@ -6,7 +6,8 @@ class PayrollSimulator extends Component {
     constructor(props) {
         super(props);
 
-        this.handleBasicChange = this.handleBasicChange.bind(this);
+        //this.handleBasicChange = this.handleBasicChange.bind(this);
+        //this.handleDaysChange = this.handleDaysChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
 
         this.state = {
@@ -140,8 +141,12 @@ class PayrollSimulator extends Component {
         return null;
     }
 
-    handleBasicChange(e) {
-        this.setState({ salarioBasico: e.target.value });
+    handleBasicChange = (e) => {
+        this.setState({ salarioBasico: e.target.value })
+    }
+
+    handleDaysChange = (e) => {
+        this.setState({ dias: e.target.value })
     }
 
     render() {
@@ -156,7 +161,7 @@ class PayrollSimulator extends Component {
                                     <InputGroup.Addon>Sueldo Básico $</InputGroup.Addon>
                                     <FormControl type="text"
                                         value={this.formatMoney(this.state.salarioBasico)}
-                                        onChange={this.handleBasicChange} />
+                                        onChange={ (e) => this.handleBasicChange(e) } />
                                     <InputGroup.Addon>.00</InputGroup.Addon>
                                 </InputGroup>
                             </FormGroup>
@@ -171,7 +176,7 @@ class PayrollSimulator extends Component {
                                         type="text"
                                         value={this.state.dias}
                                         placeholder="Entre 1 y 30 días"
-                                        onChange={this.handleBasicChange}
+                                        onChange={this.handleDaysChange}
                                     />
 
                                     <FormControl.Feedback />

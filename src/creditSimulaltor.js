@@ -11,12 +11,12 @@ class CreditSimulator extends Component {
             meses: 12
         };
 
-        this.handleChange = this.handleChange.bind(this);
-        this.handleRateChange = this.handleRateChange.bind(this);
-        this.handleMonthsChange = this.handleMonthsChange.bind(this);
+        //this.handleChange = this.handleChange.bind(this);
+        //this.handleRateChange = this.handleRateChange.bind(this);
+        //this.handleMonthsChange = this.handleMonthsChange.bind(this);
 
 
-        this.handleSubmit = this.handleSubmit.bind(this);
+        //this.handleSubmit = this.handleSubmit.bind(this);
     }
 
 
@@ -25,25 +25,25 @@ class CreditSimulator extends Component {
 
     }
 
-    handleChange(event) {
+    handleChange = (event) => {
         let monto = event.target.value;
         this.setState({
             monto
         });
     }
-    handleRateChange(event) {
+    handleRateChange = (event) => {
         this.setState({
             tasa: event.target.value,
         })
     }
-    handleMonthsChange(event) {
+    handleMonthsChange = (event) => {
 
         this.setState({
             meses: event.target.value
         })
     }
 
-    handleSubmit(event) {
+    handleSubmit = (event) => {
         event.preventDefault();
 
         this.generatePayments();
