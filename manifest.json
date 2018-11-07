@@ -3,7 +3,7 @@
   "short_name": "Simuladores",
   "theme_color": "#2196f3",
   "background_color": "#2196f3",
-  "display": "minimal-ui",
+  "display": "fullscreen",
   "Scope": "/",
   "start_url": "/",
   "icons": [
