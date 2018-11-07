@@ -8,15 +8,10 @@ class CreditSimulator extends Component {
         this.state = {
             monto: 0,
             tasa: 1.02,
-            meses: 12
+            meses: 12,
+            total: 0,
+            totalIntereses: 0
         };
-
-        //this.handleChange = this.handleChange.bind(this);
-        //this.handleRateChange = this.handleRateChange.bind(this);
-        //this.handleMonthsChange = this.handleMonthsChange.bind(this);
-
-
-        //this.handleSubmit = this.handleSubmit.bind(this);
     }
 
 
@@ -75,11 +70,16 @@ class CreditSimulator extends Component {
                 / tasa));
 
         let monto = this.state.monto;
+        let total = 0;
+        let totalIntereses = 0;
         for (let index = 0; index < this.state.meses; index++) {
 
             const intereses = monto * tasa;
             const amortizacion = renta - (intereses);
             monto -= amortizacion;
+
+            totalIntereses += intereses;
+            total += renta;
 
             cuotas.push({
                 id: index + 1,
@@ -89,9 +89,11 @@ class CreditSimulator extends Component {
                 capital: this.formatMoney(monto)
             })
         }
-
+        //let sum = cuotas.reduce((prev, cur) => return prev + cur.renta, 0);
         this.setState({
-            cuotas
+            cuotas,
+            total: this.formatMoney(total),
+            totalIntereses: this.formatMoney(totalIntereses)
         })
     }
 
@@ -169,20 +171,23 @@ class CreditSimulator extends Component {
                         <br />
                         {
                             this.state.cuotas ?
-                                <Table striped bordered condensed hover>
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Vlr. Cuota</th>
-                                            <th>Intereses</th>
-                                            <th>Amortización</th>
-                                            <th>Saldo</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {this.obtenerCuotas()}
-                                    </tbody>
-                                </Table>
+                                <div>
+                                    <Table striped bordered condensed hover>
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Vlr. Cuota</th>
+                                                <th>Intereses</th>
+                                                <th>Amortización</th>
+                                                <th>Saldo</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {this.obtenerCuotas()}
+                                        </tbody>
+                                    </Table>
+                                    <p>Pagará {this.state.total} y {this.state.totalIntereses} en intereses</p>
+                                </div>
                                 : <p>Digitar un valor de Monto</p>
                         }
                     </Col>
