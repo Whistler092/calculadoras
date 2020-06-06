@@ -149,7 +149,7 @@ class CreditSimulator extends Component {
                                     </InputGroup.Button>
                                     <FormControl type="text"
                                         value={this.state.meses}
-                                        placeholder="Digita la tasa "
+                                        placeholder="Tasa efectiva anual (%EA)"
                                         onChange={this.handleMonthsChange} />
 
                                 </InputGroup>
