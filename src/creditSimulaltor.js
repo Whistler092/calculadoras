@@ -7,7 +7,7 @@ class CreditSimulator extends Component {
         super(props);
         this.state = {
             monto: 0,
-            tasa: 1.02,
+            tasa: 10.02,
             meses: 12,
             total: 0,
             totalIntereses: 0
@@ -145,11 +145,11 @@ class CreditSimulator extends Component {
                             <FormGroup>
                                 <InputGroup>
                                     <InputGroup.Button>
-                                        <Button>Meses</Button>
+                                        <Button>Número de meses</Button>
                                     </InputGroup.Button>
                                     <FormControl type="text"
                                         value={this.state.meses}
-                                        placeholder="Tasa efectiva anual (%EA)"
+                                        placeholder="Digita el número de meses"
                                         onChange={this.handleMonthsChange} />
 
                                 </InputGroup>
@@ -157,11 +157,11 @@ class CreditSimulator extends Component {
                             <FormGroup>
                                 <InputGroup>
                                     <InputGroup.Button>
-                                        <Button>Tasa de Interes</Button>
+                                        <Button>Tasa efectiva anual (%EA)</Button>
                                     </InputGroup.Button>
                                     <FormControl type="text"
                                         value={this.state.tasa}
-                                        placeholder="Digita el número de meses"
+                                        placeholder="Digita la tasa efectiva anual"
                                         onChange={this.handleRateChange} />
                                     <InputGroup.Addon>%</InputGroup.Addon>
                                 </InputGroup>
