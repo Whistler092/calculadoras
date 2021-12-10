@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Tabs, Tab } from 'react-bootstrap';
 import './App.css';
-import CreditSimulator from './creditSimulaltor';
+import CreditSimulator from './creditSimulator';
 import PayrollSimulator from './payrollSimulator';
 
 class App extends Component {
